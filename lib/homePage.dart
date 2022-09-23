@@ -1,8 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import './drop.dart';
 import './allWords.dart';
 import './drag.dart';
+import './controller.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -24,7 +27,10 @@ class _HomePageState extends State<HomePage> {
     _dropedWord = _words[r];
     final s = _word.characters.toList()..shuffle();
     _word = s.join();
-    print(_word);
+    WidgetsBinding.instance?.addPostFrameCallback((timeStamp) {
+      Provider.of<Controller>(context, listen: false)
+          .setUp(total: _word.length);
+    });
     super.initState();
   }
 
@@ -43,7 +49,7 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: _dropedWord.characters
-                    .map((e) => Drag(
+                    .map((e) => Drop(
                           letter: e,
                         ))
                     .toList(),
