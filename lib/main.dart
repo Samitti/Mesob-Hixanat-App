@@ -6,7 +6,9 @@ import './homePage.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
-      create: (_) => Controller(), child: const MyApp()));
+    create: (_) => Controller(),
+    child: const MyApp(),
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: HomePage(),
+      home: const HomePage(),
     );
   }
 }

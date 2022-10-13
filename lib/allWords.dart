@@ -1,1 +1,1 @@
-const List<String> allWords = ['በለስ', 'ፈረስ', 'ባቡር', 'ሸተት', 'ሰገን'];
+const List<String> allWords = ['በለስ', 'ፈረስ', 'ባቡር'];

@@ -14,8 +14,8 @@ class Drop extends StatelessWidget {
 
     bool accepted = false;
     return SizedBox(
-      width: size.width * 0.15,
-      height: size.width * 0.15,
+      width: size.width * 0.20,
+      height: size.width * 0.20,
       child: Center(
         child: DragTarget(onWillAccept: (data) {
           if (data == letter) {
