@@ -54,100 +54,104 @@ class _HomePageState extends State<HomePage> {
           }
         }
         return SafeArea(
-          child: Column(
+          child: Stack(
             children: [
-              Expanded(
-                flex: 2,
-                child: SizedBox(
-                    child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(60),
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: Padding(
-                            padding: const EdgeInsets.fromLTRB(18.0, 2, 2, 2),
-                            child: FittedBox(
-                              child: Text(
-                                'መሶብ ፊደላት',
-                                style: Theme.of(context).textTheme.headline1,
-                              ),
-                            ),
-                          ),
+              Container(
+                color: Colors.lightBlue,
+              ),
+              Column(
+                children: [
+                  const Expanded(
+                    flex: 1,
+                    child: SizedBox(),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: SizedBox(
+                        child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.amber,
+                          borderRadius: BorderRadius.circular(60),
                         ),
-                        Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Selector<Controller, bool>(
-                              selector: (_, controller) =>
-                                  controller.letterDropped,
-                              builder: (_, dropped, __) => FlyInAnimation(
-                                  removeScale: true,
-                                  animate: dropped,
-                                  animationCompleted: _animationCompleted,
-                                  child: Image.asset(
-                                      'assets/images/mesob_logo.png')),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              flex: 2,
+                              child: Padding(
+                                padding:
+                                    const EdgeInsets.fromLTRB(18.0, 2, 2, 2),
+                                child: FittedBox(
+                                  child: Text(
+                                    'መሶብ ፊደላት',
+                                    style:
+                                        Theme.of(context).textTheme.headline1,
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        )
-                      ],
+                            Expanded(
+                              flex: 1,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Selector<Controller, bool>(
+                                  selector: (_, controller) =>
+                                      controller.letterDropped,
+                                  builder: (_, dropped, __) => FlyInAnimation(
+                                      removeScale: true,
+                                      animate: dropped,
+                                      animationCompleted: _animationCompleted,
+                                      child: Image.asset(
+                                          'assets/images/mesob_logo.png')),
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
+                    )),
+                  ),
+                  Expanded(
+                    flex: 4,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: _dropedWord.characters
+                          .map((e) => FlyInAnimation(
+                                animate: true,
+                                child: Drop(
+                                  letter: e,
+                                ),
+                              ))
+                          .toList(),
                     ),
                   ),
-                )),
-              ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                  color: Colors.blue,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: _dropedWord.characters
-                        .map((e) => FlyInAnimation(
-                              animate: true,
-                              child: Drop(
-                                letter: e,
-                              ),
-                            ))
-                        .toList(),
+                  Expanded(
+                    flex: 4,
+                    child: FlyInAnimation(
+                      animate: true,
+                      child: Image.asset('assets/images/$_dropedWord.png'),
+                    ),
                   ),
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: FlyInAnimation(
-                  animate: true,
-                  child: Container(
-                    color: Colors.green,
-                    child: Image.asset('assets/images/$_dropedWord.png'),
+                  Expanded(
+                    flex: 4,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: _word.characters
+                          .map((e) => FlyInAnimation(
+                                animate: true,
+                                child: Drag(
+                                  letter: e,
+                                ),
+                              ))
+                          .toList(),
+                    ),
                   ),
-                ),
-              ),
-              Expanded(
-                flex: 3,
-                child: Container(
-                  color: Colors.yellow,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: _word.characters
-                        .map((e) => FlyInAnimation(
-                              animate: true,
-                              child: Drag(
-                                letter: e,
-                              ),
-                            ))
-                        .toList(),
+                  const Expanded(
+                    flex: 1,
+                    child: ProgressBar(),
                   ),
-                ),
-              ),
-              const Expanded(
-                flex: 1,
-                child: ProgressBar(),
+                ],
               ),
             ],
           ),
