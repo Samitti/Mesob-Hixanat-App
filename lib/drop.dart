@@ -19,10 +19,10 @@ class Drop extends StatelessWidget {
       child: Center(
         child: DragTarget(onWillAccept: (data) {
           if (data == letter) {
-            print('Accepted');
+            // print('Accepted');
             return true;
           } else {
-            print('Rejected');
+            // print('Rejected');
             return false;
           }
         }, onAccept: (data) {
@@ -35,7 +35,10 @@ class Drop extends StatelessWidget {
             );
           } else {
             return Container(
-              color: Colors.amber,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                color: Colors.amber,
+              ),
               width: 50,
               height: 50,
             );

@@ -43,7 +43,7 @@ class _DragState extends State<Drag> {
                             .incrementLetters(context: context);
                       }
                     },
-                    childWhenDragging: SizedBox(),
+                    childWhenDragging: const SizedBox(),
                     feedback: Text(
                       widget.letter,
                       style: Theme.of(context)
@@ -51,7 +51,7 @@ class _DragState extends State<Drag> {
                           .headline1
                           ?.copyWith(shadows: [
                         Shadow(
-                          offset: Offset(3, 3),
+                          offset: const Offset(3, 3),
                           color: Colors.black.withOpacity(0.40),
                           blurRadius: 5,
                         )

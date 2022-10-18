@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:spelling_bee/progressBar.dart';
+import './flyInAnimation.dart';
 import './drop.dart';
 import './allWords.dart';
 import './drag.dart';
@@ -19,10 +21,10 @@ class _HomePageState extends State<HomePage> {
   late String _word, _dropedWord;
 
   _generateWord() {
-    print("Words Left${_words.length}");
+    // print("Words Left: ${_words.length}");
     final r = Random().nextInt(_words.length);
     _word = _words[r];
-    _dropedWord = _words[r];
+    _dropedWord = _word;
     _words.removeAt(r);
     final s = _word.characters.toList()..shuffle();
     _word = s.join();
@@ -58,8 +60,11 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: _dropedWord.characters
-                        .map((e) => Drop(
-                              letter: e,
+                        .map((e) => FlyInAnimation(
+                              animate: true,
+                              child: Drop(
+                                letter: e,
+                              ),
                             ))
                         .toList(),
                   ),
@@ -67,7 +72,13 @@ class _HomePageState extends State<HomePage> {
               ),
               Expanded(
                 flex: 3,
-                child: Container(color: Colors.green),
+                child: FlyInAnimation(
+                  animate: true,
+                  child: Container(
+                    color: Colors.green,
+                    child: Image.asset('assets/images/$_dropedWord.png'),
+                  ),
+                ),
               ),
               Expanded(
                 flex: 3,
@@ -76,16 +87,19 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: _word.characters
-                        .map((e) => Drag(
-                              letter: e,
+                        .map((e) => FlyInAnimation(
+                              animate: true,
+                              child: Drag(
+                                letter: e,
+                              ),
                             ))
                         .toList(),
                   ),
                 ),
               ),
-              Expanded(
+              const Expanded(
                 flex: 1,
-                child: Container(color: Colors.pink),
+                child: ProgressBar(),
               ),
             ],
           ),

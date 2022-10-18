@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:spelling_bee/controller.dart';
-import 'package:spelling_bee/homePage.dart';
-
 import './homePage.dart';
+import '/controller.dart';
 
 class MessageBox extends StatelessWidget {
   const MessageBox({
@@ -46,10 +44,11 @@ class MessageBox extends StatelessWidget {
               Provider.of<Controller>(context, listen: false).reset();
               Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => const HomePage()));
+            } else {
+              Provider.of<Controller>(context, listen: false)
+                  .requestWord(request: true);
+              Navigator.of(context).pop();
             }
-            Provider.of<Controller>(context, listen: false)
-                .requestWord(request: true);
-            Navigator.of(context).pop();
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),

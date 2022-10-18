@@ -1,17 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:spelling_bee/allWords.dart';
+import './allWords.dart';
 import './messageBox.dart';
 
 class Controller extends ChangeNotifier {
   int totalletters = 0, lettersAnswered = 0, wordsAnswered = 0;
-  bool generateWord = true,
-      sessionCompleted = false,
-      letterDropped = false,
-      generateWordList = false;
-
+  bool generateWord = true, sessionCompleted = false, letterDropped = false;
+  double percentCompleted = 0;
   setUp({required int total}) {
-    totalletters = total;
     lettersAnswered = 0;
+    totalletters = total;
     notifyListeners();
   }
 
@@ -19,6 +16,7 @@ class Controller extends ChangeNotifier {
     lettersAnswered++;
     if (lettersAnswered == totalletters) {
       wordsAnswered++;
+      percentCompleted = wordsAnswered / allWords.length;
       if (wordsAnswered == allWords.length) {
         sessionCompleted = true;
       }
@@ -28,7 +26,7 @@ class Controller extends ChangeNotifier {
           builder: (_) => MessageBox(
                 sessionCompleted: sessionCompleted,
               ));
-    }
+    } else {}
     notifyListeners();
   }
 
@@ -37,10 +35,15 @@ class Controller extends ChangeNotifier {
     notifyListeners();
   }
 
+  updateLetterDroped({required bool dropped}) {
+    letterDropped = dropped;
+    notifyListeners();
+  }
+
   reset() {
     sessionCompleted = false;
     wordsAnswered = 0;
     generateWord = true;
-    generateWordList = true;
+    percentCompleted = 0;
   }
 }
