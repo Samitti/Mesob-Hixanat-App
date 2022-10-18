@@ -36,6 +36,13 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  _animationCompleted() {
+    Future.delayed(Duration(microseconds: 200), () {
+      Provider.of<Controller>(context, listen: false)
+          .updateLetterDroped(dropped: false);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Selector<Controller, bool>(
@@ -51,7 +58,48 @@ class _HomePageState extends State<HomePage> {
             children: [
               Expanded(
                 flex: 2,
-                child: Container(color: Colors.red),
+                child: SizedBox(
+                    child: Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.circular(60),
+                    ),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: Padding(
+                            padding: const EdgeInsets.fromLTRB(18.0, 2, 2, 2),
+                            child: FittedBox(
+                              child: Text(
+                                'መሶብ ፊደላት',
+                                style: Theme.of(context).textTheme.headline1,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Selector<Controller, bool>(
+                              selector: (_, controller) =>
+                                  controller.letterDropped,
+                              builder: (_, dropped, __) => FlyInAnimation(
+                                  removeScale: true,
+                                  animate: dropped,
+                                  animationCompleted: _animationCompleted,
+                                  child: Image.asset(
+                                      'assets/images/mesob_logo.png')),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                )),
               ),
               Expanded(
                 flex: 3,

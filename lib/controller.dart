@@ -15,6 +15,7 @@ class Controller extends ChangeNotifier {
 
   incrementLetters({required BuildContext context}) {
     lettersAnswered++;
+    updateLetterDroped(dropped: true);
     if (lettersAnswered == totalletters) {
       wordsAnswered++;
       AudioCache().play("audio/correct_2.mp3");

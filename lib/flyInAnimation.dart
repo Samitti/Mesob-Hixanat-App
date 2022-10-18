@@ -6,11 +6,15 @@ class FlyInAnimation extends StatefulWidget {
   const FlyInAnimation({
     required this.child,
     required this.animate,
+    this.removeScale = false,
+    this.animationCompleted,
     Key? key,
   }) : super(key: key);
 
   final Widget child;
   final bool animate;
+  final bool? removeScale;
+  final Function? animationCompleted;
 
   @override
   State<FlyInAnimation> createState() => _FlyInAnimationState();
@@ -47,6 +51,7 @@ class _FlyInAnimationState extends State<FlyInAnimation>
     if (widget.animate && !_controller.isAnimating) {
       _controller.reset();
       _controller.forward();
+      widget.animationCompleted?.call();
     }
     super.didUpdateWidget(oldWidget);
   }
@@ -63,10 +68,12 @@ class _FlyInAnimationState extends State<FlyInAnimation>
       animation: _controller,
       builder: (context, child) => RotationTransition(
         turns: _rotationAnimation,
-        child: ScaleTransition(
-          scale: _controller,
-          child: widget.child,
-        ),
+        child: (widget.removeScale ?? false)
+            ? widget.child
+            : ScaleTransition(
+                scale: _controller,
+                child: widget.child,
+              ),
       ),
     );
   }
