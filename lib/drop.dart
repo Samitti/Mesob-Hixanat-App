@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 class Drop extends StatelessWidget {
@@ -23,6 +24,7 @@ class Drop extends StatelessWidget {
             return true;
           } else {
             // print('Rejected');
+            AudioCache().play("audio/error.mp3");
             return false;
           }
         }, onAccept: (data) {

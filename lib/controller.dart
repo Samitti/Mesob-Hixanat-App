@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import './allWords.dart';
 import './messageBox.dart';
@@ -16,6 +17,7 @@ class Controller extends ChangeNotifier {
     lettersAnswered++;
     if (lettersAnswered == totalletters) {
       wordsAnswered++;
+      AudioCache().play("audio/correct_2.mp3");
       percentCompleted = wordsAnswered / allWords.length;
       if (wordsAnswered == allWords.length) {
         sessionCompleted = true;
@@ -26,7 +28,9 @@ class Controller extends ChangeNotifier {
           builder: (_) => MessageBox(
                 sessionCompleted: sessionCompleted,
               ));
-    } else {}
+    } else {
+      AudioCache().play("audio/correct_1.mp3");
+    }
     notifyListeners();
   }
 

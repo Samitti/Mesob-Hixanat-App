@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import './homePage.dart';
@@ -41,6 +42,7 @@ class MessageBox extends StatelessWidget {
           ),
           onPressed: () {
             if (sessionCompleted) {
+              AudioCache().play("audio/win.mp3");
               Provider.of<Controller>(context, listen: false).reset();
               Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => const HomePage()));
