@@ -26,11 +26,10 @@ class MessageBox extends StatelessWidget {
         borderRadius: BorderRadius.circular(60),
       ),
       backgroundColor: Colors.amber,
-      title: Center(
-        child: Text(
-          title,
-          style: Theme.of(context).textTheme.headline1,
-        ),
+      title: Text(
+        title,
+        textAlign: TextAlign.center,
+        style: Theme.of(context).textTheme.headline1?.copyWith(fontSize: 40),
       ),
       actionsAlignment: MainAxisAlignment.center,
       actions: [
@@ -42,7 +41,6 @@ class MessageBox extends StatelessWidget {
           ),
           onPressed: () {
             if (sessionCompleted) {
-              AudioCache().play("audio/win.mp3");
               Provider.of<Controller>(context, listen: false).reset();
               Navigator.of(context).pushReplacement(
                   MaterialPageRoute(builder: (context) => const HomePage()));

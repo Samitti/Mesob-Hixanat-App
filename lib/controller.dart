@@ -22,6 +22,7 @@ class Controller extends ChangeNotifier {
       percentCompleted = wordsAnswered / allWords.length;
       if (wordsAnswered == allWords.length) {
         sessionCompleted = true;
+        AudioCache().play("audio/win.mp3");
       }
       showDialog(
           barrierDismissible: false,

@@ -74,6 +74,13 @@ class _HomePageState extends State<HomePage> {
                         decoration: BoxDecoration(
                           color: Colors.amber,
                           borderRadius: BorderRadius.circular(60),
+                          boxShadow: [
+                            BoxShadow(
+                              offset: Offset(0, 5),
+                              blurRadius: 5,
+                              color: Colors.black.withOpacity(0.3),
+                            ),
+                          ],
                         ),
                         child: Row(
                           children: [
@@ -94,7 +101,7 @@ class _HomePageState extends State<HomePage> {
                             Expanded(
                               flex: 1,
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                                padding: const EdgeInsets.all(10.0),
                                 child: Selector<Controller, bool>(
                                   selector: (_, controller) =>
                                       controller.letterDropped,
@@ -112,8 +119,19 @@ class _HomePageState extends State<HomePage> {
                       ),
                     )),
                   ),
+                  const Expanded(
+                    flex: 1,
+                    child: SizedBox(),
+                  ),
                   Expanded(
                     flex: 4,
+                    child: FlyInAnimation(
+                      animate: true,
+                      child: Image.asset('assets/images/$_dropedWord.png'),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: _dropedWord.characters
@@ -127,14 +145,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   Expanded(
-                    flex: 4,
-                    child: FlyInAnimation(
-                      animate: true,
-                      child: Image.asset('assets/images/$_dropedWord.png'),
-                    ),
-                  ),
-                  Expanded(
-                    flex: 4,
+                    flex: 3,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: _word.characters

@@ -40,9 +40,16 @@ class Drop extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 color: Colors.amber,
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0, 1),
+                    blurRadius: 5,
+                    color: Colors.black.withOpacity(0.3),
+                  ),
+                ],
               ),
-              width: 50,
-              height: 50,
+              width: 60,
+              height: 60,
             );
           }
         }),
