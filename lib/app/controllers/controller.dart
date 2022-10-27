@@ -20,7 +20,9 @@ class Controller extends ChangeNotifier {
     if (lettersAnswered == totalletters) {
       wordsAnswered++;
       AudioCache().play("audio/correct_2.mp3");
-      AudioCache().play("audio/words/$newWord.mp3");
+      Future.delayed(const Duration(microseconds: 200000), () {
+        AudioCache().play("audio/words/$newWord.mp3");
+      });
       percentCompleted = wordsAnswered / allWords.length;
       if (wordsAnswered == allWords.length) {
         sessionCompleted = true;
