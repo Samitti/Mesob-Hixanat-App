@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import './controller.dart';
+import 'app/controllers/controller.dart';
 
-import './homePage.dart';
+import 'app/screens/word_game.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+    [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown],
+  );
   runApp(ChangeNotifierProvider(
     create: (_) => Controller(),
     child: const MyApp(),
@@ -29,7 +34,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const HomePage(),
+      home: const WordGame(),
     );
   }
 }
