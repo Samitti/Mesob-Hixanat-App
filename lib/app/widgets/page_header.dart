@@ -25,7 +25,7 @@ class _PageHeaderState extends State<PageHeader> {
     return ClipPath(
       clipper: MyClipper(),
       child: Container(
-        padding: const EdgeInsets.only(left: 30, top: 60, right: 30),
+        padding: const EdgeInsets.only(left: 20, top: 30, right: 20),
         height: 300,
         width: double.infinity,
         decoration: BoxDecoration(
@@ -48,13 +48,9 @@ class _PageHeaderState extends State<PageHeader> {
                   HapticFeedback.lightImpact();
                   Navigator.pop(context);
                 },
-                child: const Text(
-                  '<<',
-                  style: TextStyle(
-                    fontSize: 42,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700,
-                  ),
+                child: Image.asset(
+                  'assets/images/button_previous_03.png',
+                  width: 50,
                 ),
               ),
             ),
@@ -63,7 +59,7 @@ class _PageHeaderState extends State<PageHeader> {
                 alignment: Alignment.center,
                 children: [
                   Positioned(
-                    top: 30 - widget.offset / 4,
+                    top: 10 - widget.offset / 4,
                     child: Text(
                       widget.title,
                       style: Theme.of(context).textTheme.headline1?.copyWith(

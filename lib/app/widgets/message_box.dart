@@ -25,7 +25,7 @@ class MessageBox extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(60),
       ),
-      backgroundColor: Colors.amber,
+      backgroundColor: Color.fromARGB(255, 129, 83, 247),
       title: Text(
         title,
         textAlign: TextAlign.center,

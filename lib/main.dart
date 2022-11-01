@@ -33,6 +33,12 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: Colors.white,
           ),
+          headline2: TextStyle(
+            fontFamily: 'RobotoCondensed',
+            fontSize: 60,
+            fontWeight: FontWeight.bold,
+            color: Color.fromARGB(255, 255, 255, 255),
+          ),
         ),
       ),
       home: const HomeScreen(),

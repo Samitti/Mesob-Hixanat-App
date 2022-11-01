@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spelling_bee/app/screens/game_screen.dart';
 import 'package:spelling_bee/app/screens/letters_screen.dart';
 import 'package:spelling_bee/app/screens/word_game.dart';
 import 'package:spelling_bee/app/widgets/category_card.dart';
@@ -13,11 +14,11 @@ class HomeScreen extends StatelessWidget {
         title: 'ጸወታ',
         primaryColor: Colors.orangeAccent[100]!,
         secondaryColor: Colors.orange,
-        screen: WordGame(
-            // title: 'ጸወታ',
-            // primaryColor: Colors.orangeAccent[100]!,
-            // secondaryColor: Colors.orange,
-            ),
+        screen: GameScreen(
+          title: 'ጸወታ',
+          primaryColor: Colors.orangeAccent[100]!,
+          secondaryColor: Colors.orange,
+        ),
       ),
       CategoryCard(
         title: 'በሰሸ',
