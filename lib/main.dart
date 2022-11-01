@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:spelling_bee/app/screens/home_screen.dart';
 import 'app/controllers/controller.dart';
 
 import 'app/screens/word_game.dart';
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const WordGame(),
+      home: const HomeScreen(),
     );
   }
 }
