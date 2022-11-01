@@ -61,7 +61,7 @@ class _ProgressBarState extends State<ProgressBar>
                 borderRadius: BorderRadius.circular(60),
                 child: LinearProgressIndicator(
                   color: Colors.amber,
-                  backgroundColor: Colors.grey,
+                  backgroundColor: Color.fromARGB(255, 129, 83, 247),
                   value: _animation.value,
                 ),
               ),

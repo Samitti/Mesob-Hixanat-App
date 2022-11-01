@@ -72,18 +72,34 @@ class _GameScreenState extends State<GameScreen> {
         return SafeArea(
           child: Stack(
             children: [
-              Container(
-                // color: Colors.lightBlue,
-                decoration: const BoxDecoration(
-                  color: Color.fromARGB(255, 35, 8, 97),
-                  image: DecorationImage(
-                    opacity: 0.5,
-                    image: AssetImage(
-                      'assets/images/bg-bottom.png',
+              Stack(
+                children: [
+                  Container(
+                    // color: Colors.lightBlue,
+                    decoration: const BoxDecoration(
+                      color: Color.fromARGB(255, 35, 8, 97),
+                      image: DecorationImage(
+                        opacity: 0.5,
+                        image: AssetImage(
+                          'assets/images/bg-bottom.png',
+                        ),
+                        alignment: Alignment.bottomCenter,
+                      ),
                     ),
-                    alignment: Alignment.bottomCenter,
                   ),
-                ),
+                  Container(
+                    // color: Colors.lightBlue,
+                    decoration: const BoxDecoration(
+                      image: DecorationImage(
+                        opacity: 0.5,
+                        image: AssetImage(
+                          'assets/images/bg-top-0.png',
+                        ),
+                        alignment: Alignment.topCenter,
+                      ),
+                    ),
+                  ),
+                ],
               ),
               Column(
                 children: [

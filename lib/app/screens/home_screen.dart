@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:spelling_bee/app/screens/game_screen.dart';
 import 'package:spelling_bee/app/screens/letters_screen.dart';
 import 'package:spelling_bee/app/screens/word_game.dart';
+import 'package:spelling_bee/app/screens/words_screen.dart';
 import 'package:spelling_bee/app/widgets/category_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -13,11 +14,11 @@ class HomeScreen extends StatelessWidget {
       CategoryCard(
         title: 'ጸወታ',
         primaryColor: Colors.orangeAccent[100]!,
-        secondaryColor: Colors.orange,
+        secondaryColor: Color.fromARGB(255, 79, 42, 198),
         screen: GameScreen(
           title: 'ጸወታ',
           primaryColor: Colors.orangeAccent[100]!,
-          secondaryColor: Colors.orange,
+          secondaryColor: Color.fromARGB(255, 79, 42, 198),
         ),
       ),
       CategoryCard(
@@ -34,7 +35,7 @@ class HomeScreen extends StatelessWidget {
         title: 'ቃላት',
         primaryColor: Colors.orangeAccent[100]!,
         secondaryColor: Colors.purple,
-        screen: LettersScreen(
+        screen: WordsScreen(
           title: 'ቃላት',
           primaryColor: Colors.purpleAccent[100]!,
           secondaryColor: Colors.purple,
@@ -42,12 +43,12 @@ class HomeScreen extends StatelessWidget {
       ),
       CategoryCard(
         title: '123',
-        primaryColor: Colors.orangeAccent[100]!,
-        secondaryColor: Color(0xFF11249F),
+        primaryColor: Color.fromARGB(255, 200, 255, 128)!,
+        secondaryColor: Color.fromARGB(255, 255, 204, 1),
         screen: LettersScreen(
           title: '123',
           primaryColor: Color(0xFF3383CD),
-          secondaryColor: Color(0xFF11249F),
+          secondaryColor: Color.fromARGB(255, 255, 204, 1),
         ),
       ),
       CategoryCard(
@@ -98,7 +99,7 @@ class HomeScreen extends StatelessWidget {
               backgroundColor: Colors.green[50],
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.asset(
-                  'assets/images/bg-top.png',
+                  'assets/images/bg-top-1.png',
                   fit: BoxFit.cover,
                   alignment: Alignment.topCenter,
                 ),
