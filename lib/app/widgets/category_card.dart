@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 
 class CategoryCard extends StatefulWidget {
   final String title;
+  final String cardIcon;
   final Color primaryColor;
   final Color secondaryColor;
   final Widget screen;
@@ -14,6 +15,7 @@ class CategoryCard extends StatefulWidget {
     required this.primaryColor,
     required this.secondaryColor,
     required this.screen,
+    required this.cardIcon,
   }) : super(key: key);
 
   @override
@@ -65,13 +67,33 @@ class _CategoryCardState extends State<CategoryCard> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20.0),
             ),
-            child: Text(
-              widget.title,
-              style: Theme.of(context).textTheme.headline1?.copyWith(
-                    fontSize: 70.0,
-                    letterSpacing: 4.0,
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Container(
+                      padding: const EdgeInsets.all(8.0),
+                      child: FittedBox(
+                        child: Text(
+                          widget.title,
+                          style:
+                              Theme.of(context).textTheme.headline1?.copyWith(
+                                    fontSize: 70.0,
+                                    letterSpacing: 4.0,
+                                  ),
+                          softWrap: false,
+                        ),
+                      ),
+                    ),
                   ),
-              softWrap: false,
+                  Image.asset(
+                    'assets/images/icons/${widget.cardIcon}',
+                    fit: BoxFit.cover,
+                    alignment: Alignment.center,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

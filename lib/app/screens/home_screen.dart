@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:spelling_bee/app/screens/game_screen.dart';
 import 'package:spelling_bee/app/screens/letters_screen.dart';
-import 'package:spelling_bee/app/screens/word_game.dart';
 import 'package:spelling_bee/app/screens/words_screen.dart';
 import 'package:spelling_bee/app/widgets/category_card.dart';
 
@@ -12,7 +11,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Widget> categories = [
       CategoryCard(
-        title: 'ጸወታ',
+        title: 'ግድላት',
+        cardIcon: 'game.png',
         primaryColor: Colors.orangeAccent[100]!,
         secondaryColor: Color.fromARGB(255, 79, 42, 198),
         screen: GameScreen(
@@ -23,6 +23,7 @@ class HomeScreen extends StatelessWidget {
       ),
       CategoryCard(
         title: 'በሰሸ',
+        cardIcon: 'letters.png',
         primaryColor: Colors.orangeAccent[100]!,
         secondaryColor: Colors.green,
         screen: LettersScreen(
@@ -33,6 +34,7 @@ class HomeScreen extends StatelessWidget {
       ),
       CategoryCard(
         title: 'ቃላት',
+        cardIcon: 'words.png',
         primaryColor: Colors.orangeAccent[100]!,
         secondaryColor: Colors.purple,
         screen: WordsScreen(
@@ -43,6 +45,7 @@ class HomeScreen extends StatelessWidget {
       ),
       CategoryCard(
         title: '123',
+        cardIcon: 'numbers.png',
         primaryColor: Color.fromARGB(255, 200, 255, 128)!,
         secondaryColor: Color.fromARGB(255, 255, 204, 1),
         screen: LettersScreen(
@@ -53,6 +56,7 @@ class HomeScreen extends StatelessWidget {
       ),
       CategoryCard(
         title: 'ቅርጽታት',
+        cardIcon: 'shapes.png',
         primaryColor: Colors.orangeAccent[100]!,
         secondaryColor: Colors.red,
         screen: LettersScreen(
@@ -63,16 +67,18 @@ class HomeScreen extends StatelessWidget {
       ),
       CategoryCard(
         title: 'ሕብርታት',
+        cardIcon: 'colors.png',
         primaryColor: Colors.orangeAccent[100]!,
         secondaryColor: Color.fromARGB(255, 223, 30, 233),
         screen: LettersScreen(
           title: 'ሕብርታት',
           primaryColor: Colors.redAccent[100]!,
-          secondaryColor: Color.fromARGB(255, 223, 30, 233),
+          secondaryColor: const Color.fromARGB(255, 223, 30, 233),
         ),
       ),
       CategoryCard(
         title: 'ዛንታታት',
+        cardIcon: 'stories.png',
         primaryColor: Colors.orangeAccent[100]!,
         secondaryColor: Colors.blueGrey,
         screen: LettersScreen(
@@ -99,7 +105,7 @@ class HomeScreen extends StatelessWidget {
               backgroundColor: Colors.green[50],
               flexibleSpace: FlexibleSpaceBar(
                 background: Image.asset(
-                  'assets/images/bg-top-1.png',
+                  'assets/images/bg-top-1xx.png',
                   fit: BoxFit.cover,
                   alignment: Alignment.topCenter,
                 ),

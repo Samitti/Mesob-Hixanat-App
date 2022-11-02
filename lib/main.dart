@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:spelling_bee/app/screens/home_screen.dart';
 import 'app/controllers/controller.dart';
 
-import 'app/screens/word_game.dart';
-
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations(

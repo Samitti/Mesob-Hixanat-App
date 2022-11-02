@@ -1,7 +1,6 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import '../screens/word_game.dart';
+import 'package:spelling_bee/app/screens/game_screen.dart';
 import '../controllers/controller.dart';
 
 class MessageBox extends StatelessWidget {
@@ -42,8 +41,12 @@ class MessageBox extends StatelessWidget {
           onPressed: () {
             if (sessionCompleted) {
               Provider.of<Controller>(context, listen: false).reset();
-              Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (context) => const WordGame()));
+              Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  builder: (context) => GameScreen(
+                        title: 'ጸወታ',
+                        primaryColor: Colors.orangeAccent[100]!,
+                        secondaryColor: const Color.fromARGB(255, 79, 42, 198),
+                      )));
             } else {
               Provider.of<Controller>(context, listen: false)
                   .requestWord(request: true);

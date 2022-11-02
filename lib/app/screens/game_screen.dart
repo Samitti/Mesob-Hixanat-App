@@ -165,7 +165,7 @@ class _GameScreenState extends State<GameScreen> {
                                     const EdgeInsets.fromLTRB(18.0, 2, 2, 2),
                                 child: FittedBox(
                                   child: Text(
-                                    'መሶብ ቃላት',
+                                    'መሶብ ግድላት',
                                     style:
                                         Theme.of(context).textTheme.headline1,
                                   ),
