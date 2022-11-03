@@ -1,15 +1,12 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:spelling_bee/app/controllers/color_controller.dart';
-import 'package:spelling_bee/app/widgets/page_header.dart';
-import 'package:spelling_bee/app/widgets/tile_card.dart';
 
 import 'package:provider/provider.dart';
 import 'package:spelling_bee/app/widgets/progress_bar.dart';
 import '../widgets/fly_in_animation.dart';
 import '../widgets/drop.dart';
-import '../../all_words.dart';
+import '../controllers/all_words.dart';
 import '../widgets/drag.dart';
 import '../controllers/controller.dart';
 
@@ -18,7 +15,7 @@ class GameScreen extends StatefulWidget {
   final Color primaryColor;
   final Color secondaryColor;
 
-  GameScreen({
+  const GameScreen({
     Key? key,
     required this.title,
     required this.primaryColor,
@@ -130,11 +127,11 @@ class _GameScreenState extends State<GameScreen> {
                       padding: const EdgeInsets.all(12.0),
                       child: Container(
                         decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 129, 83, 247),
+                          color: const Color.fromARGB(255, 129, 83, 247),
                           borderRadius: BorderRadius.circular(60),
                           boxShadow: [
                             BoxShadow(
-                              offset: Offset(0, 5),
+                              offset: const Offset(0, 5),
                               blurRadius: 5,
                               color: Colors.black.withOpacity(0.3),
                             ),

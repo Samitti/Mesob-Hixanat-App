@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:spelling_bee/app/controllers/color_controller.dart';
+import 'package:spelling_bee/app/controllers/all_words.dart';
 import 'package:spelling_bee/app/widgets/page_header.dart';
-import 'package:spelling_bee/app/widgets/tile_card.dart';
+
+import '../widgets/word_card.dart';
 
 class WordsScreen extends StatefulWidget {
   final String title;
@@ -26,7 +27,7 @@ class _WordsScreenState extends State<WordsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         slivers: [
           SliverToBoxAdapter(
             child: PageHeader(
@@ -36,32 +37,21 @@ class _WordsScreenState extends State<WordsScreen> {
               offset: offset,
             ),
           ),
-          SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 20.0,
-            ),
+          SliverList(
             delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return Padding(
-                  padding: index % 2 == 0
-                      ? const EdgeInsets.only(bottom: 20, left: 20)
-                      : const EdgeInsets.only(bottom: 20, right: 20),
-                  child: TileCard(
-                    title: colorList[index].name,
-                    textColor: colorList[index].name == 'ጻዕዳ'
-                        ? const Color(0xFF303030)
-                        : Colors.white,
-                    backgroundColor: Color(int.parse(colorList[index].code)),
-                    fontSizeBase: 30,
-                    fontSizeActive: 40,
-                    onTap: () {
-                      // _playAudio(colorList[index].audio),
-                    },
-                  ),
+              (BuildContext context, int index) {
+                return Card(
+                  child: Container(
+                      height: 180,
+                      alignment: Alignment.center,
+                      child: WordCard(
+                        title: allWords[index],
+                        primaryColor: Colors.orangeAccent[100]!,
+                        secondaryColor: widget.secondaryColor,
+                      )),
                 );
               },
-              childCount: colorList.length,
+              childCount: allWords.length, // 1000 list items
             ),
           ),
         ],

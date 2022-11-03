@@ -23,7 +23,6 @@ class TileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-//      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
         color: backgroundColor,
@@ -35,32 +34,32 @@ class TileCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Material(
-        clipBehavior: Clip.hardEdge,
-        borderRadius: BorderRadius.circular(15.0),
-        type: MaterialType.transparency,
-        child: InkWell(
-          onTap: onTap,
-          child: Container(
-            alignment: Alignment.center,
-            child: AnimatedDefaultTextStyle(
-              style: isActive
-                  ? TextStyle(fontSize: fontSizeActive)
-                  : TextStyle(fontSize: fontSizeBase),
-              duration: const Duration(milliseconds: 400),
-              curve: Curves.bounceOut,
-              child: Text(
-                title,
-                style: TextStyle(
-                  color: textColor,
-                  fontWeight: FontWeight.w700,
-                ),
-                softWrap: false,
-              ),
-            ),
-          ),
-        ),
-      ),
+      // child: Material(
+      //   clipBehavior: Clip.hardEdge,
+      //   borderRadius: BorderRadius.circular(15.0),
+      //   type: MaterialType.transparency,
+      //   child: InkWell(
+      //     onTap: onTap,
+      //     child: Container(
+      //       alignment: Alignment.center,
+      //       child: AnimatedDefaultTextStyle(
+      //         style: isActive
+      //             ? TextStyle(fontSize: fontSizeActive)
+      //             : TextStyle(fontSize: fontSizeBase),
+      //         duration: const Duration(milliseconds: 400),
+      //         curve: Curves.bounceOut,
+      //         child: Text(
+      //           title,
+      //           style: TextStyle(
+      //             color: textColor,
+      //             fontWeight: FontWeight.w700,
+      //           ),
+      //           softWrap: false,
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

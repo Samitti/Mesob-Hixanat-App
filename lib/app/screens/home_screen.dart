@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:spelling_bee/app/screens/colors_screen.dart';
 import 'package:spelling_bee/app/screens/game_screen.dart';
 import 'package:spelling_bee/app/screens/letters_screen.dart';
 import 'package:spelling_bee/app/screens/words_screen.dart';
@@ -14,11 +15,11 @@ class HomeScreen extends StatelessWidget {
         title: 'ግድላት',
         cardIcon: 'game.png',
         primaryColor: Colors.orangeAccent[100]!,
-        secondaryColor: Color.fromARGB(255, 79, 42, 198),
+        secondaryColor: const Color.fromARGB(255, 79, 42, 198),
         screen: GameScreen(
           title: 'ጸወታ',
           primaryColor: Colors.orangeAccent[100]!,
-          secondaryColor: Color.fromARGB(255, 79, 42, 198),
+          secondaryColor: const Color.fromARGB(255, 79, 42, 198),
         ),
       ),
       CategoryCard(
@@ -43,10 +44,10 @@ class HomeScreen extends StatelessWidget {
           secondaryColor: Colors.purple,
         ),
       ),
-      CategoryCard(
+      const CategoryCard(
         title: '123',
         cardIcon: 'numbers.png',
-        primaryColor: Color.fromARGB(255, 200, 255, 128)!,
+        primaryColor: Color.fromARGB(255, 200, 255, 128),
         secondaryColor: Color.fromARGB(255, 255, 204, 1),
         screen: LettersScreen(
           title: '123',
@@ -69,8 +70,8 @@ class HomeScreen extends StatelessWidget {
         title: 'ሕብርታት',
         cardIcon: 'colors.png',
         primaryColor: Colors.orangeAccent[100]!,
-        secondaryColor: Color.fromARGB(255, 223, 30, 233),
-        screen: LettersScreen(
+        secondaryColor: const Color.fromARGB(255, 223, 30, 233),
+        screen: ColorsScreen(
           title: 'ሕብርታት',
           primaryColor: Colors.redAccent[100]!,
           secondaryColor: const Color.fromARGB(255, 223, 30, 233),

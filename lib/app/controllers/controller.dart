@@ -1,6 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
-import '../../all_words.dart';
+import 'all_words.dart';
 import '../widgets/message_box.dart';
 
 class Controller extends ChangeNotifier {

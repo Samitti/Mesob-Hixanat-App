@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:spelling_bee/app/controllers/color_controller.dart';
-import 'package:spelling_bee/app/widgets/page_header.dart';
-import 'package:spelling_bee/app/widgets/tile_card.dart';
 
-class LettersScreen extends StatefulWidget {
+import '../controllers/color_controller.dart';
+import '../widgets/page_header.dart';
+import '../widgets/tile_card.dart';
+
+class ColorsScreen extends StatefulWidget {
   final String title;
   final Color primaryColor;
   final Color secondaryColor;
 
-  const LettersScreen({
+  const ColorsScreen({
     Key? key,
     required this.title,
     required this.primaryColor,
@@ -16,10 +17,10 @@ class LettersScreen extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<LettersScreen> createState() => _LettersScreenState();
+  State<ColorsScreen> createState() => _ColorsScreenState();
 }
 
-class _LettersScreenState extends State<LettersScreen> {
+class _ColorsScreenState extends State<ColorsScreen> {
   double offset = 0;
 
   @override
