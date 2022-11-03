@@ -49,7 +49,7 @@ class HomeScreen extends StatelessWidget {
         cardIcon: 'numbers.png',
         primaryColor: Color.fromARGB(255, 200, 255, 128),
         secondaryColor: Color.fromARGB(255, 255, 204, 1),
-        screen: LettersScreen(
+        screen: ColorsScreen(
           title: '123',
           primaryColor: Color(0xFF3383CD),
           secondaryColor: Color.fromARGB(255, 255, 204, 1),
@@ -60,7 +60,7 @@ class HomeScreen extends StatelessWidget {
         cardIcon: 'shapes.png',
         primaryColor: Colors.orangeAccent[100]!,
         secondaryColor: Colors.red,
-        screen: LettersScreen(
+        screen: ColorsScreen(
           title: 'ቅርጽታት',
           primaryColor: Colors.redAccent[100]!,
           secondaryColor: Colors.red,
@@ -82,7 +82,7 @@ class HomeScreen extends StatelessWidget {
         cardIcon: 'stories.png',
         primaryColor: Colors.orangeAccent[100]!,
         secondaryColor: Colors.blueGrey,
-        screen: LettersScreen(
+        screen: ColorsScreen(
           title: 'ዛንታታት',
           primaryColor: Colors.redAccent[100]!,
           secondaryColor: Colors.blueGrey,

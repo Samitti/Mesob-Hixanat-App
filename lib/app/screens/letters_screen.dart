@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:spelling_bee/app/controllers/color_controller.dart';
 import 'package:spelling_bee/app/widgets/page_header.dart';
-import 'package:spelling_bee/app/widgets/tile_card.dart';
+
+import '../controllers/all_letters.dart';
+import '../widgets/letter_card.dart';
 
 class LettersScreen extends StatefulWidget {
   final String title;
@@ -22,6 +23,8 @@ class LettersScreen extends StatefulWidget {
 class _LettersScreenState extends State<LettersScreen> {
   double offset = 0;
 
+  get allWords => null;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,32 +39,21 @@ class _LettersScreenState extends State<LettersScreen> {
               offset: offset,
             ),
           ),
-          SliverGrid(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-              crossAxisSpacing: 20.0,
-            ),
+          SliverList(
             delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return Padding(
-                  padding: index % 2 == 0
-                      ? const EdgeInsets.only(bottom: 20, left: 20)
-                      : const EdgeInsets.only(bottom: 20, right: 20),
-                  child: TileCard(
-                    title: colorList[index].name,
-                    textColor: colorList[index].name == 'ጻዕዳ'
-                        ? const Color(0xFF303030)
-                        : Colors.white,
-                    backgroundColor: Color(int.parse(colorList[index].code)),
-                    fontSizeBase: 30,
-                    fontSizeActive: 40,
-                    onTap: () {
-                      // _playAudio(colorList[index].audio),
-                    },
-                  ),
+              (BuildContext context, int index) {
+                return Card(
+                  child: Container(
+                      height: 200,
+                      alignment: Alignment.center,
+                      child: LetterCard(
+                        letterFamily: allLetters[index].toList(),
+                        primaryColor: Colors.orangeAccent[100]!,
+                        secondaryColor: widget.secondaryColor,
+                      )),
                 );
               },
-              childCount: colorList.length,
+              childCount: allLetters.length, // 1000 list items
             ),
           ),
         ],
