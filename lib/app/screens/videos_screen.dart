@@ -3,14 +3,21 @@ import 'package:spelling_bee/app/screens/colors_screen.dart';
 import 'package:spelling_bee/app/screens/game_screen.dart';
 import 'package:spelling_bee/app/screens/letters_screen.dart';
 import 'package:spelling_bee/app/screens/shapes_screen.dart';
-import 'package:spelling_bee/app/screens/videos_screen.dart';
 import 'package:spelling_bee/app/screens/words_screen.dart';
 import 'package:spelling_bee/app/widgets/category_card.dart';
 
 import 'numbers_screen.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class VideosScreen extends StatelessWidget {
+  final String title;
+  final Color primaryColor;
+  final Color secondaryColor;
+  const VideosScreen({
+    Key? key,
+    required this.title,
+    required this.primaryColor,
+    required this.secondaryColor,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
