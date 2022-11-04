@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 import '../controllers/color_controller.dart';
@@ -57,7 +58,8 @@ class _ColorsScreenState extends State<ColorsScreen> {
                     fontSizeBase: 30,
                     fontSizeActive: 40,
                     onTap: () {
-                      // _playAudio(colorList[index].audio),
+                      AudioCache()
+                          .play("audio/colors/${colorList[index].name}.mp3");
                     },
                   ),
                 );
