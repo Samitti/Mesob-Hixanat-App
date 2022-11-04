@@ -5,6 +5,8 @@ import 'package:spelling_bee/app/screens/letters_screen.dart';
 import 'package:spelling_bee/app/screens/words_screen.dart';
 import 'package:spelling_bee/app/widgets/category_card.dart';
 
+import 'numbers_screen.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -49,7 +51,7 @@ class HomeScreen extends StatelessWidget {
         cardIcon: 'numbers.png',
         primaryColor: Color.fromARGB(255, 200, 255, 128),
         secondaryColor: Color.fromARGB(255, 255, 204, 1),
-        screen: ColorsScreen(
+        screen: NumbersScreen(
           title: '123',
           primaryColor: Color(0xFF3383CD),
           secondaryColor: Color.fromARGB(255, 255, 204, 1),

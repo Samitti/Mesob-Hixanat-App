@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class TileCard extends StatelessWidget {
+class NumbersTileCard extends StatelessWidget {
   final bool isActive;
   final String title;
   final Color textColor;
@@ -9,7 +9,7 @@ class TileCard extends StatelessWidget {
   final double fontSizeActive;
   final VoidCallback onTap;
 
-  const TileCard({
+  const NumbersTileCard({
     Key? key,
     this.isActive = false,
     required this.title,
@@ -48,13 +48,16 @@ class TileCard extends StatelessWidget {
                   : TextStyle(fontSize: fontSizeBase),
               duration: const Duration(milliseconds: 400),
               curve: Curves.bounceOut,
-              child: Text(
-                title,
-                style: TextStyle(
-                  color: textColor,
-                  fontWeight: FontWeight.w700,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: textColor,
+                    fontWeight: FontWeight.w700,
+                  ),
+                  softWrap: false,
                 ),
-                softWrap: false,
               ),
             ),
           ),
