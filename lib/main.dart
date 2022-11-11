@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:spelling_bee/app/screens/home_screen.dart';
 import 'package:spelling_bee/app/screens/videos_screen.dart';
 import 'app/controllers/controller.dart';
+import 'app/screens/video_player.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const VideosScreen(),
+      home: VideoPlayer(),
     );
   }
 }

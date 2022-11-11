@@ -47,13 +47,12 @@ class _VideosScreenState extends State<VideosScreen> {
       'part': 'snippet',
       'key': apiKey,
       'channelId': 'UCDYeMRs7NM2jjKpIoNENKpQ',
-      'maxResults': '50',
+      'maxResults': '23',
     };
 
     final uri =
         Uri.https('www.googleapis.com', '/youtube/v3/search', queryParameters);
     final response = await http.get(uri);
-    final List<dynamic> loadedOrdersVideos = [];
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
     print(
       extractedData['items'][0],
@@ -65,9 +64,9 @@ class _VideosScreenState extends State<VideosScreen> {
 
   _buildVideo(Video video) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
-      padding: EdgeInsets.all(10.0),
-      height: 140,
+      margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+      padding: const EdgeInsets.all(10.0),
+      height: 300,
       decoration: const BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(
           color: Colors.black12,
@@ -75,24 +74,23 @@ class _VideosScreenState extends State<VideosScreen> {
           blurRadius: 6.0,
         )
       ]),
-      child: Row(
+      child: Column(
         children: <Widget>[
           Image(
-            width: 150.0,
             image: NetworkImage(video.thumbnailUrl),
           ),
-          const SizedBox(
-            width: 10.0,
-          ),
-          Expanded(
-            child: Text(
-              video.title,
-              style: const TextStyle(
-                color: Colors.black,
-                fontSize: 18.0,
-              ),
-            ),
-          ),
+          // const SizedBox(
+          //   width: 10.0,
+          // ),
+          // Expanded(
+          //   child: Text(
+          //     video.title,
+          //     style: const TextStyle(
+          //       color: Colors.black,
+          //       fontSize: 18.0,
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
@@ -106,7 +104,7 @@ class _VideosScreenState extends State<VideosScreen> {
       ),
       body: _data != null
           ? ListView.builder(
-              itemCount: _data.length,
+              itemCount: _data.length - 1,
               itemBuilder: (BuildContext context, int index) {
                 Video video = Video(
                   id: _data[index]['id']['videoId'],
