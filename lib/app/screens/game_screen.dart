@@ -190,9 +190,9 @@ class _GameScreenState extends State<GameScreen> {
                       ),
                     )),
                   ),
-                  const Expanded(
+                  Expanded(
                     flex: 1,
-                    child: SizedBox(),
+                    child: const SizedBox(),
                   ),
                   Expanded(
                     flex: 4,
@@ -229,7 +229,7 @@ class _GameScreenState extends State<GameScreen> {
                           .toList(),
                     ),
                   ),
-                  const Expanded(
+                  Expanded(
                     flex: 1,
                     child: ProgressBar(),
                   ),

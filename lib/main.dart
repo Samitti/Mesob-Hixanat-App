@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:spelling_bee/app/screens/home_screen.dart';
+import 'package:spelling_bee/app/screens/videos_screen.dart';
 import 'app/controllers/controller.dart';
 
 void main() {
@@ -39,7 +40,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const HomeScreen(),
+      home: const VideosScreen(),
     );
   }
 }
