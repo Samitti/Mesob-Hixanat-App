@@ -1,29 +1,20 @@
-import 'dart:convert';
-
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:spelling_bee/app/controllers/color_controller.dart';
-import 'package:spelling_bee/app/models/channel_model.dart';
-import 'package:spelling_bee/app/screens/colors_screen.dart';
-import 'package:spelling_bee/app/screens/game_screen.dart';
-import 'package:spelling_bee/app/screens/letters_screen.dart';
-import 'package:spelling_bee/app/screens/shapes_screen.dart';
-import 'package:spelling_bee/app/screens/words_screen.dart';
-import 'package:spelling_bee/app/utilities/keys.dart';
-import 'package:spelling_bee/app/widgets/category_card.dart';
+import 'package:spelling_bee/app/screens/video_player.dart';
 
-import '../models/video_model.dart';
-import 'numbers_screen.dart';
-import 'package:http/http.dart' as http;
+import '../models/videos_list.dart';
+import '../utilities/services.dart';
+import '../widgets/page_header.dart';
 
 class VideosScreen extends StatefulWidget {
-  // final String title;
-  // final Color primaryColor;
-  // final Color secondaryColor;
-  const VideosScreen({
+  final String title;
+  final Color primaryColor;
+  final Color secondaryColor;
+  VideosScreen({
     Key? key,
-    // required this.title,
-    // required this.primaryColor,
-    // required this.secondaryColor,
+    required this.title,
+    required this.primaryColor,
+    required this.secondaryColor,
   }) : super(key: key);
 
   @override
@@ -31,97 +22,91 @@ class VideosScreen extends StatefulWidget {
 }
 
 class _VideosScreenState extends State<VideosScreen> {
-  var _data;
+  late VideosList _videosList;
+  late bool _isLoadingVideos;
+  late String _nextPageToken;
+  double offset = 0;
 
   @override
   void initState() {
-    // TODO: implement initState
+    _isLoadingVideos = true;
+    _nextPageToken = '';
+    _loadVideos();
     super.initState();
-    fetchVideos();
   }
 
-  Future<void> fetchVideos() async {
-    const apiKey = API_KEY;
-
-    final queryParameters = {
-      'part': 'snippet',
-      'key': apiKey,
-      'channelId': 'UCDYeMRs7NM2jjKpIoNENKpQ',
-      'maxResults': '23',
-    };
-
-    final uri =
-        Uri.https('www.googleapis.com', '/youtube/v3/search', queryParameters);
-    final response = await http.get(uri);
-    final extractedData = json.decode(response.body) as Map<String, dynamic>;
-    print(
-      extractedData['items'][0],
+  _loadVideos() async {
+    VideosList temVideosList = await Services.getVideosList(
+      playListId: 'PLuYj4Im3PAjWPOBLnzv9J0U5LrMur4qfU',
+      pageToken: _nextPageToken,
     );
+    _nextPageToken = temVideosList.nextPageToken;
+    _videosList = VideosList(
+        kind: '',
+        etag: '',
+        nextPageToken: temVideosList.nextPageToken,
+        videos: temVideosList.videos,
+        pageInfo: temVideosList.pageInfo);
     setState(() {
-      _data = extractedData['items'];
+      _isLoadingVideos = false;
     });
-  }
-
-  _buildVideo(Video video) {
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-      padding: const EdgeInsets.all(10.0),
-      height: 300,
-      decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-        BoxShadow(
-          color: Colors.black12,
-          offset: Offset(0, 1),
-          blurRadius: 6.0,
-        )
-      ]),
-      child: Column(
-        children: <Widget>[
-          Image(
-            image: NetworkImage(video.thumbnailUrl),
-          ),
-          // const SizedBox(
-          //   width: 10.0,
-          // ),
-          // Expanded(
-          //   child: Text(
-          //     video.title,
-          //     style: const TextStyle(
-          //       color: Colors.black,
-          //       fontSize: 18.0,
-          //     ),
-          //   ),
-          // ),
-        ],
-      ),
-    );
+    print(_videosList.videos.length);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Mesob Hixanat Channel'),
-      ),
-      body: _data != null
-          ? ListView.builder(
-              itemCount: _data.length - 1,
-              itemBuilder: (BuildContext context, int index) {
-                Video video = Video(
-                  id: _data[index]['id']['videoId'],
-                  title: _data[index]['snippet']['title'],
-                  thumbnailUrl: _data[index]['snippet']['thumbnails']['high']
-                      ['url'],
-                  channelTitle: _data[index]['snippet']['channelTitle'],
-                );
-                return _buildVideo(video);
-              },
-            )
-          : Center(
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation<Color>(
-                  Theme.of(context).primaryColor,
-                ),
+      body: _isLoadingVideos
+          ? Container(
+              child: const Center(
+                child: CircularProgressIndicator(),
               ),
+            )
+          : CustomScrollView(
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                SliverToBoxAdapter(
+                  child: PageHeader(
+                    title: widget.title,
+                    primaryColor: widget.primaryColor,
+                    secondaryColor: widget.secondaryColor,
+                    offset: offset,
+                  ),
+                ),
+                SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
+                      VideoItem videoItem = _videosList.videos[index];
+                      return Card(
+                        margin: const EdgeInsets.only(bottom: 20),
+                        child: InkWell(
+                          onTap: () async {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (context) {
+                              return VideoPlayer(videoItem: videoItem);
+                            }));
+                          },
+                          child: Container(
+                            height: 300,
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: CachedNetworkImage(
+                                    imageUrl:
+                                        videoItem.video.thumbnails.high.url,
+                                  ),
+                                ),
+                                // Flexible(child: Text(videoItem.video.title)),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    childCount: _videosList.videos.length, // 1000 list items
+                  ),
+                ),
+              ],
             ),
     );
   }

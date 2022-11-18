@@ -87,10 +87,10 @@ class HomeScreen extends StatelessWidget {
         primaryColor: Colors.orangeAccent[100]!,
         secondaryColor: Colors.blueGrey,
         screen: VideosScreen(
-            // title: 'ዛንታታት',
-            // primaryColor: Colors.redAccent[100]!,
-            // secondaryColor: Colors.blueGrey,
-            ),
+          title: 'ቪድዮታት',
+          primaryColor: Colors.redAccent[100]!,
+          secondaryColor: Colors.blueGrey,
+        ),
       )
     ];
     return Scaffold(

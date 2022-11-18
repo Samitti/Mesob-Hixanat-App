@@ -40,6 +40,8 @@ dependencies:
   youtube_api: ^1.0.4
   dio: ^4.0.6
   logger: ^1.1.0
+  cached_network_image: ^3.2.2
+  flutter_native_splash: ^2.2.14
 
 dev_dependencies:
   flutter_test:

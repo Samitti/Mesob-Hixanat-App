@@ -1,0 +1,145 @@
+import 'dart:convert';
+
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:spelling_bee/app/screens/video_player.dart';
+import 'package:spelling_bee/app/utilities/keys.dart';
+
+import '../models/video_model.dart';
+import 'package:http/http.dart' as http;
+
+class VideosScreen extends StatefulWidget {
+  // final String title;
+  // final Color primaryColor;
+  // final Color secondaryColor;
+  const VideosScreen({
+    Key? key,
+    // required this.title,
+    // required this.primaryColor,
+    // required this.secondaryColor,
+  }) : super(key: key);
+
+  @override
+  State<VideosScreen> createState() => _VideosScreenState();
+}
+
+class _VideosScreenState extends State<VideosScreen> {
+  var _videos;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchVideos();
+  }
+
+  Future<void> fetchVideos() async {
+    const apiKey = API_KEY;
+
+    final queryParameters = {
+      'part': 'snippet',
+      'key': apiKey,
+      'channelId': 'UCDYeMRs7NM2jjKpIoNENKpQ',
+      'maxResults': '10',
+    };
+
+    final uri =
+        Uri.https('www.googleapis.com', '/youtube/v3/search', queryParameters);
+    try {
+      final response = await http.get(uri);
+
+      if (response.statusCode == 200) {
+        // Map<String dynamic> data = json.decode(response.body)['items'][0];
+        var data = json.decode(response.body);
+        List<dynamic> videosJson = data['items'];
+        List<dynamic> videos = [];
+        videosJson.forEach(
+          (element) => print(element),
+          //     {
+          //   if (element['id']['videoId'] != null)
+          //     {
+          //       // print(element),
+          //       videos.add(element),
+          //     }
+          // },
+        );
+
+        // print('before _videos');
+        // print(videos);
+        // print('after _videos');
+        setState(() {
+          _videos = videos;
+        });
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void _navigate(BuildContext context, Widget screen) {
+    HapticFeedback.lightImpact();
+    Navigator.push(
+      context,
+      CupertinoPageRoute(
+        builder: (_) {
+          return screen;
+        },
+      ),
+    );
+  }
+
+  _buildVideo(Video video) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+      height: 300,
+      decoration: const BoxDecoration(color: Colors.white, boxShadow: [
+        BoxShadow(
+          color: Colors.black12,
+          offset: Offset(0, 1),
+          blurRadius: 6.0,
+        )
+      ]),
+      child: InkWell(
+        onTap: () => _navigate(
+            context,
+            VideoPlayer(
+              title: video.title,
+              vId: video.id,
+            )),
+        child: Image(
+          image: NetworkImage(video.thumbnailUrl),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Mesob Hixanat Channel'),
+      ),
+      body: _videos != null
+          ? ListView.builder(
+              itemCount: _videos.length,
+              itemBuilder: (BuildContext context, int index) {
+                Video video = Video(
+                  id: _videos[index]['id']['videoId'],
+                  title: _videos[index]['snippet']['title'],
+                  thumbnailUrl: _videos[index]['snippet']['thumbnails']['high']
+                      ['url'],
+                );
+                return _buildVideo(video);
+              },
+            )
+          : Center(
+              child: CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(
+                  Theme.of(context).primaryColor,
+                ),
+              ),
+            ),
+    );
+  }
+}

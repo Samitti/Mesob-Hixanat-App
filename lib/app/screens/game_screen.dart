@@ -29,7 +29,7 @@ class GameScreen extends StatefulWidget {
 class _GameScreenState extends State<GameScreen> {
   double offset = 0;
   final List<String> _words = allWords.toList();
-  late String _word, _dropedWord;
+  late String _word = '', _dropedWord = '';
 
   _generateWord() {
     // print("Words Left: ${_words.length}");
@@ -190,9 +190,9 @@ class _GameScreenState extends State<GameScreen> {
                       ),
                     )),
                   ),
-                  Expanded(
+                  const Expanded(
                     flex: 1,
-                    child: const SizedBox(),
+                    child: SizedBox(),
                   ),
                   Expanded(
                     flex: 4,
@@ -229,7 +229,7 @@ class _GameScreenState extends State<GameScreen> {
                           .toList(),
                     ),
                   ),
-                  Expanded(
+                  const Expanded(
                     flex: 1,
                     child: ProgressBar(),
                   ),

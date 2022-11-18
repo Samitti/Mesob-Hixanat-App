@@ -1,58 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
+import '../models/videos_list.dart';
+
 class VideoPlayer extends StatefulWidget {
-  VideoPlayer({Key? key}) : super(key: key);
+  final VideoItem videoItem;
+
+  VideoPlayer({
+    required this.videoItem,
+  });
 
   @override
   State<VideoPlayer> createState() => _VideoPlayerState();
 }
 
 class _VideoPlayerState extends State<VideoPlayer> {
-  final videoUrl = 'https://www.youtube.com/watch?v=QDyviZc7df4&t=644s';
-
   late YoutubePlayerController _controller;
 
   @override
   void initState() {
+    final videoUrl =
+        'https://www.youtube.com/watch?v=${widget.videoItem.video.resourceId.videoId}';
+
     final videoID = YoutubePlayer.convertUrlToId(videoUrl);
 
     _controller = YoutubePlayerController(
-      initialVideoId: videoID!,
+      initialVideoId: widget.videoItem.video.resourceId.videoId,
       flags: const YoutubePlayerFlags(
-        autoPlay: false,
+        autoPlay: true,
+        loop: true,
+        mute: false,
       ),
     );
     super.initState();
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Video Player'),
-      ),
-      body: Column(
-        children: [
-          YoutubePlayer(
-            controller: _controller,
-            showVideoProgressIndicator: true,
-            onReady: () => debugPrint('ready'),
-            bottomActions: [
-              CurrentPosition(),
-              ProgressBar(
-                isExpanded: true,
-                colors: ProgressBarColors(
-                  playedColor: Colors.amber,
-                  handleColor: Colors.amberAccent,
+  void deactivate() {
+    _controller.pause();
+    super.deactivate();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => YoutubePlayerBuilder(
+        player: YoutubePlayer(controller: _controller),
+        builder: (context, player) => Scaffold(
+          appBar: AppBar(
+            title: const Text('Mesob Hixanat Channel'),
+          ),
+          body: Column(
+            children: [
+              player,
+              Container(
+                margin: const EdgeInsets.all(10.0),
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  widget.videoItem.video.title,
+                  style: const TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-              ),
-              PlaybackSpeedButton(),
-              FullScreenButton(),
+              )
             ],
           ),
-        ],
-      ),
-    );
-  }
+        ),
+      );
 }
