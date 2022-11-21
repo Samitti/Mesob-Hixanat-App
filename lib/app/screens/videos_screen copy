@@ -64,10 +64,6 @@ class _VideosScreenState extends State<VideosScreen> {
           //     }
           // },
         );
-
-        // print('before _videos');
-        // print(videos);
-        // print('after _videos');
         setState(() {
           _videos = videos;
         });
