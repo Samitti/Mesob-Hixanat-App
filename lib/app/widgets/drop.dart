@@ -20,11 +20,9 @@ class Drop extends StatelessWidget {
       child: Center(
         child: DragTarget(onWillAccept: (data) {
           if (data == letter) {
-            // print('Accepted');
             AudioCache().play("audio/letters/$letter.mp3");
             return true;
           } else {
-            // print('Rejected');
             AudioCache().play("audio/error.mp3");
             return false;
           }

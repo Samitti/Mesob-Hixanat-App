@@ -83,11 +83,11 @@ class HomeScreen extends StatelessWidget {
       ),
       CategoryCard(
         title: 'ቪድዮታት',
-        cardIcon: 'stories.png',
+        cardIcon: 'video_icon.png',
         primaryColor: Colors.orangeAccent[100]!,
         secondaryColor: Colors.blueGrey,
         screen: VideosScreen(
-          title: 'ዛንታታት',
+          title: 'ቪድዮታት',
           primaryColor: Colors.redAccent[100]!,
           secondaryColor: Colors.blueGrey,
         ),
