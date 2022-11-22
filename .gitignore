@@ -47,4 +47,4 @@ app.*.map.json
 
 # api keys
 lib\app\utilities\keys.dart
-D:\MICROVERSE\PROJECTS\FLUTTER\Spelling_Bee\spelling_bee\lib\app\utilities\
+/lib/app/utilities/constants.dart
