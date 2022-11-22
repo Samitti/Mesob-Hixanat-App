@@ -1,10 +1,11 @@
 import 'dart:io';
 
+import 'package:flutter/rendering.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import '../models/channel_info.dart';
 import '../models/videos_list.dart';
-import 'constants.dart';
+import 'Constants.dart';
 
 class Services {
   static const CHANNEL_ID = 'UCDYeMRs7NM2jjKpIoNENKpQ';
@@ -14,7 +15,7 @@ class Services {
     Map<String, String> parameters = {
       'part': 'snippet,contentDetails,statistics',
       'id': CHANNEL_ID,
-      'key': Constants.API_KEY,
+      'key': API_KEY,
     };
 
     Map<String, String> headers = {
@@ -39,7 +40,7 @@ class Services {
       'playlistId': playListId,
       'maxResults': '20',
       'pageToken': pageToken,
-      'key': Constants.API_KEY,
+      'key': API_KEY,
     };
 
     Map<String, String> headers = {
