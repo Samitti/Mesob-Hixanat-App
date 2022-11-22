@@ -32,7 +32,6 @@ class _GameScreenState extends State<GameScreen> {
   late String _word = '', _dropedWord = '';
 
   _generateWord() {
-    // print("Words Left: ${_words.length}");
     final r = Random().nextInt(_words.length);
     _word = _words[r];
     _dropedWord = _word;
@@ -72,7 +71,6 @@ class _GameScreenState extends State<GameScreen> {
               Stack(
                 children: [
                   Container(
-                    // color: Colors.lightBlue,
                     decoration: const BoxDecoration(
                       color: Color.fromARGB(255, 35, 8, 97),
                       image: DecorationImage(
@@ -85,7 +83,6 @@ class _GameScreenState extends State<GameScreen> {
                     ),
                   ),
                   Container(
-                    // color: Colors.lightBlue,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         opacity: 0.5,
@@ -115,7 +112,7 @@ class _GameScreenState extends State<GameScreen> {
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Image.asset(
-                              'assets/images/button_previous_04.png'),
+                              'assets/images/button_previous_03.png'),
                         ),
                       ),
                     )),

@@ -1,11 +1,9 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
-import '../controllers/color_controller.dart';
 import '../controllers/numbers_controller.dart';
 import '../widgets/numbers_tile_card.dart';
 import '../widgets/page_header.dart';
-import '../widgets/tile_card.dart';
 
 class NumbersScreen extends StatefulWidget {
   final String title;

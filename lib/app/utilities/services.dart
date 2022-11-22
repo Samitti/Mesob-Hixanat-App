@@ -28,7 +28,6 @@ class Services {
     );
 
     Response response = await http.get(uri, headers: headers);
-    // print(response.body);
     ChannelInfo channelInfo = channelInfoFromJson(response.body);
     return channelInfo;
   }
@@ -54,7 +53,6 @@ class Services {
     );
 
     Response response = await http.get(uri, headers: headers);
-    // print(response.body);
     VideosList videosList = videosListFromJson(response.body);
     return videosList;
   }

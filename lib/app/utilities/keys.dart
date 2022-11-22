@@ -1,2 +1,0 @@
-const API_KEY = 'AIzaSyB4lc3F7IpdDwPaPwBRaGOQNcGb1wlbR5Y';
-const PLAYLIST_ID = 'PLuYj4Im3PAjWPOBLnzv9J0U5LrMur4qfU';

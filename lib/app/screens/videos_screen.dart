@@ -50,7 +50,6 @@ class _VideosScreenState extends State<VideosScreen> {
     setState(() {
       _isLoadingVideos = false;
     });
-    print(_videosList.videos.length);
   }
 
   @override
