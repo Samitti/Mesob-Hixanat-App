@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:spelling_bee/app/screens/colors_screen.dart';
 import 'package:spelling_bee/app/screens/game_screen.dart';
@@ -6,6 +8,7 @@ import 'package:spelling_bee/app/screens/shapes_screen.dart';
 import 'package:spelling_bee/app/screens/videos_screen.dart';
 import 'package:spelling_bee/app/screens/words_screen.dart';
 import 'package:spelling_bee/app/widgets/category_card.dart';
+import 'package:url_launcher/link.dart';
 
 import 'numbers_screen.dart';
 
@@ -90,6 +93,113 @@ class HomeScreen extends StatelessWidget {
           title: 'ቪድዮታት',
           primaryColor: Colors.redAccent[100]!,
           secondaryColor: Colors.blueGrey,
+        ),
+      ),
+      Container(
+        padding: EdgeInsets.all(10.0),
+        margin: const EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.amber,
+          boxShadow: [
+            BoxShadow(
+              offset: const Offset(0, 4),
+              blurRadius: 10,
+              color: Colors.green[900]!.withOpacity(0.2),
+            )
+          ],
+        ),
+        child: Center(
+          child: Link(
+            target: LinkTarget.blank,
+            uri: Uri.parse('https://bit.ly/3tryYDg'),
+            builder: (context, followLink) => ElevatedButton(
+              onPressed: () {
+                int x = Random().nextInt(10);
+                int y = Random().nextInt(10);
+                int res = x * y;
+                int result = x * y;
+
+                int z = Random().nextInt(10) * Random().nextInt(10);
+                int a = Random().nextInt(10) * Random().nextInt(30);
+                List<int> gues = [a, res, z];
+                gues = gues..shuffle();
+                res = gues[0];
+                z = gues[1];
+                a = gues[2];
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: const Text(
+                      'ቅኑዕ መልሲ ሃብ/ቢ',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20.0,
+                        color: Colors.pink,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    content: Text(
+                      '$x * $y = ___',
+                      style: const TextStyle(
+                        fontSize: 30.0,
+                        color: Colors.green,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: a == result
+                            ? followLink
+                            : () => Navigator.pop(context),
+                        child: Text(
+                          '$a',
+                          style: const TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: res == result
+                            ? followLink
+                            : () => Navigator.pop(context),
+                        child: Text(
+                          '$res',
+                          style: const TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: z == result
+                            ? followLink
+                            : () => Navigator.pop(context),
+                        child: Text(
+                          '$z',
+                          style: const TextStyle(
+                            fontSize: 20.0,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              },
+              child: const Padding(
+                padding: EdgeInsets.all(8.0),
+                child: Text(
+                  'ነዚ ስራሕ ንምድጋፍ ንእትደልዩ',
+                  style: TextStyle(
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+            ),
+          ),
         ),
       )
     ];
