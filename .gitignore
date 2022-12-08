@@ -48,3 +48,4 @@ app.*.map.json
 # api keys
 lib\app\utilities\keys.dart
 /lib/app/utilities/constants.dart
+key.proberties
